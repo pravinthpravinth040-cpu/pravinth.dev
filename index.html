@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Pravinth N — Developer & AI Engineer</title>
+<link rel="icon" type="image/jpeg" href="profile.jpg">
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:wght@300;400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
   :root {
@@ -122,6 +123,19 @@
     padding-bottom: 4rem;
   }
 
+  .hero-wrapper {
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: 3.5rem;
+    align-items: center;
+    width: 100%;
+  }
+
+  .hero-content {
+    display: flex;
+    flex-direction: column;
+  }
+
   .hero-tag {
     font-family: var(--mono);
     font-size: 0.8rem;
@@ -146,9 +160,9 @@
 
   .hero h1 {
     font-family: var(--display);
-    font-size: clamp(3rem, 8vw, 6.5rem);
+    font-size: clamp(2.6rem, 5.2vw, 4.8rem);
     font-weight: 800;
-    line-height: 0.95;
+    line-height: 1;
     letter-spacing: -0.04em;
     margin-bottom: 1.5rem;
     opacity: 0;
@@ -215,6 +229,149 @@
 
   .btn-outline:hover { border-color: var(--accent2); color: var(--accent2); transform: translateY(-2px); }
 
+  /* HERO PHOTO SHOWCASE */
+  .hero-media {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .photo-card-wrap {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    animation: fadeUp 0.8s ease forwards 0.5s;
+  }
+
+  .photo-float-anim {
+    position: relative;
+    animation: float 6s ease-in-out infinite;
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+  }
+
+  .photo-ambient-glow {
+    position: absolute;
+    inset: -20px;
+    border-radius: 36px;
+    background: radial-gradient(circle at 50% 50%, rgba(124, 111, 245, 0.45), rgba(6, 214, 160, 0.2) 60%, transparent 75%);
+    filter: blur(35px);
+    z-index: 0;
+    pointer-events: none;
+    opacity: 0.8;
+  }
+
+  .photo-card {
+    position: relative;
+    z-index: 1;
+    border-radius: 24px;
+    padding: 6px;
+    background: linear-gradient(135deg, rgba(167, 139, 250, 0.5), rgba(255, 255, 255, 0.08) 45%, rgba(6, 214, 160, 0.4));
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6), 0 0 30px rgba(124, 111, 245, 0.2);
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
+  }
+
+  .photo-card:hover {
+    transform: translateY(-4px) scale(1.015);
+    box-shadow: 0 28px 65px rgba(0, 0, 0, 0.7), 0 0 45px rgba(124, 111, 245, 0.35);
+  }
+
+  .photo-card-inner {
+    position: relative;
+    border-radius: 19px;
+    overflow: hidden;
+    background: var(--bg2);
+    width: 320px;
+    aspect-ratio: 939 / 1024;
+    max-width: 100%;
+  }
+
+  .hero-profile-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    display: block;
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .photo-card:hover .hero-profile-img {
+    transform: scale(1.04);
+  }
+
+  .photo-overlay-gradient {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, transparent 65%, rgba(10, 10, 15, 0.65) 100%);
+    pointer-events: none;
+  }
+
+  .photo-corner-decor {
+    position: absolute;
+    width: 14px;
+    height: 14px;
+    border: 2px solid var(--accent2);
+    z-index: 4;
+    pointer-events: none;
+  }
+
+  .photo-corner-decor.tl {
+    top: -2px;
+    left: -2px;
+    border-right: none;
+    border-bottom: none;
+    border-top-left-radius: 6px;
+  }
+
+  .photo-corner-decor.br {
+    bottom: -2px;
+    right: -2px;
+    border-left: none;
+    border-top: none;
+    border-bottom-right-radius: 6px;
+  }
+
+  .photo-status-badge {
+    position: absolute;
+    bottom: -16px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    gap: 0.55rem;
+    padding: 0.45rem 1.1rem;
+    background: rgba(17, 17, 24, 0.92);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border: 1px solid var(--border2);
+    border-radius: 100px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5), 0 0 15px rgba(6, 214, 160, 0.15);
+    z-index: 5;
+    white-space: nowrap;
+  }
+
+  .status-indicator {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--accent3);
+    box-shadow: 0 0 8px var(--accent3);
+    animation: pulse 2s ease-in-out infinite;
+  }
+
+  .status-text {
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    color: var(--text);
+    font-weight: 500;
+    letter-spacing: 0.06em;
+  }
+
   /* HERO SCROLL INDICATOR */
   .scroll-hint {
     margin-top: 4rem;
@@ -266,8 +423,6 @@
     gap: 4rem;
     align-items: start;
   }
-
-  .about-left {}
 
   .about-bio {
     color: var(--muted);
@@ -652,13 +807,41 @@
   .reveal.visible { opacity: 1; transform: none; }
 
   /* RESPONSIVE */
+  @media (max-width: 900px) {
+    .hero-wrapper {
+      grid-template-columns: 1fr;
+      gap: 3rem;
+      text-align: center;
+    }
+    .hero-media {
+      order: -1;
+      margin-bottom: 0.5rem;
+    }
+    .hero-tag, .avail {
+      justify-content: center;
+    }
+    .hero-desc {
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .hero-cta {
+      justify-content: center;
+    }
+    .scroll-hint {
+      justify-content: center;
+    }
+    .photo-card-inner {
+      width: 260px;
+    }
+  }
+
   @media (max-width: 768px) {
     nav { padding: 1rem; }
     .nav-links { display: none; }
     section { padding: 4rem 1.25rem; }
     .about-grid, .contact-wrap { grid-template-columns: 1fr; gap: 2rem; }
     .edu-card { grid-template-columns: 1fr; }
-    .hero h1 { font-size: clamp(2.5rem, 12vw, 4rem); }
+    .hero h1 { font-size: clamp(2.2rem, 10vw, 3.5rem); }
   }
 </style>
 </head>
@@ -678,19 +861,42 @@
 
 <!-- HERO -->
 <section class="hero" id="home">
-  <div class="avail"><span class="avail-dot"></span>Open to Internships & Opportunities</div>
-  <div class="hero-tag">Based in Coimbatore, Tamil Nadu</div>
-  <h1>
-    Pravinth N<br>
-    <span class="line2">Dev & AI Engineer</span>
-  </h1>
-  <p class="hero-desc">
-    B.Sc. IT student building intelligent systems and scalable web applications.
-    Passionate about AI/ML, cybersecurity, and full-stack development.
-  </p>
-  <div class="hero-cta">
-    <a href="#projects" class="btn-primary">View Projects</a>
-    <a href="#contact" class="btn-outline">Get In Touch</a>
+  <div class="hero-wrapper">
+    <div class="hero-content">
+      <div class="avail"><span class="avail-dot"></span>Open to Internships & Opportunities</div>
+      <div class="hero-tag">Based in Coimbatore, Tamil Nadu</div>
+      <h1>
+        Pravinth N<br>
+        <span class="line2">Dev & AI Engineer</span>
+      </h1>
+      <p class="hero-desc">
+        B.Sc. IT student building intelligent systems and scalable web applications.
+        Passionate about AI/ML, cybersecurity, and full-stack development.
+      </p>
+      <div class="hero-cta">
+        <a href="#projects" class="btn-primary">View Projects</a>
+        <a href="#contact" class="btn-outline">Get In Touch</a>
+      </div>
+    </div>
+    <div class="hero-media">
+      <div class="photo-card-wrap">
+        <div class="photo-float-anim">
+          <div class="photo-ambient-glow"></div>
+          <div class="photo-card">
+            <div class="photo-corner-decor tl"></div>
+            <div class="photo-corner-decor br"></div>
+            <div class="photo-card-inner">
+              <img src="profile.jpg" alt="Pravinth N — Developer & AI Engineer" class="hero-profile-img">
+              <div class="photo-overlay-gradient"></div>
+            </div>
+            <div class="photo-status-badge">
+              <span class="status-indicator"></span>
+              <span class="status-text">AI & Full-Stack</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
   <div class="scroll-hint">
     <div class="scroll-line"></div>
